@@ -1,6 +1,6 @@
 <html lang="es">
     <head>
-    <title>Leaflet básico</title>
+    <title>Leaflet ejemplo plugin</title>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="author" content="autor"/>
@@ -8,6 +8,16 @@
       <meta name="robots" content="index,follow">
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
       <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+      <!--Plugin OSMGeocode -->
+      <!--si descargamos 3.3 -->
+      <!--<script src="js/Control.OSMGeocoder.js"></script>-->
+   <!--<link rel="stylesheet" href="js/Control.OSMGeocoder.css" />-->
+
+  <!--si añadimos directamente 3.1-->
+    <script src="https://rawgit.com/k4r573n/leaflet-control-osm-geocoder/master/Control.OSMGeocoder.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/k4r573n/leaflet-control-osm-geocoder/master/Control.OSMGeocoder.css" />
+
+
       <style>
         body {
           margin: 0;
@@ -33,19 +43,15 @@
                 attribution : "OSM"
                 });
                 capa1.addTo(map);
-                var punto = L.circleMarker([41.3954, 2.16859],{
-            color: '#ffffff',
-            fillColor: '#00ff00',
-            fillOpacity: 0.9,
-            radius: 8
-             });
-    punto.addTo(map);
-    punto.bindPopup('Hola punto');
-    punto.openPopup();
+                L.control.mousePosition(position).addTo(map);
+                //añadir plugin
+                var osmGeocoder = new L.Control.OSMGeocoder({placeholder: 'Buscar lugar...'});
+                    map.addControl(osmGeocoder);
+
             }
             </script>
     </head>
     <body onLoad="init()">
         <div id="map"></div>
     </body>
-    </html>
+    </html> 
